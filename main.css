@@ -1,0 +1,18 @@
+html, body {
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+h1 {
+    color: #fff;
+}
+
+h2 {
+    color: #414045;
+}
