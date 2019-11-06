@@ -24,6 +24,23 @@ class Andpopup {
                 this.hidePopup();
             });
         }
+
+        /* send form for constructor */
+
+        this.pendingFlag = true;
+
+        if (options.sendForm != null) {
+            let form = document.querySelector(`${options.sendForm.formSelector}`);
+
+            form.addEventListener('submit', () => {
+                if (this.pendingFlag === true) {
+                    this.pending();
+                    this.pendingLoad();
+                }
+            });
+        }
+
+        /* end send form for constructor */
     }
 
     hidePopup() {
@@ -36,22 +53,62 @@ class Andpopup {
         this.overlay.classList.add('andpopup-overlay_show');
     }
 
-    create(tag, tagClass) {
+    create(tag, tagClass) { //created element before popup window
         let element = document.createElement(`${tag}`);
         element.className = `${tagClass}`;
         this.popup.prepend(element);
+
         return element;
     }
 
-    wrap(tag, tagClass) {
+    wrap(tag, tagClass) {   //wrapper container for popup window
         this.popup.insertAdjacentHTML('beforebegin', `<${tag} class="${tagClass}">`);
-        let wrapper = document.querySelector(`.${tagClass}`);
+        let wrapper = this.popup.previousSibling;
         wrapper.append(this.popup);
+
         return wrapper;
     }
 
     createOverlay() {
         if (document.querySelector('.andpopup-overlay') == null) this.wrapper.insertAdjacentHTML('beforebegin', '<div class="andpopup-overlay">');
+
         return document.querySelector('.andpopup-overlay');
     }
+
+    /* send form */
+
+    pending() {
+        let overlay = document.createElement('div');
+        overlay.className = 'andpopup-load-overlay';
+        this.popup.append(overlay);
+
+        return overlay;
+    }
+
+    pendingLoad() {   //created block with image for pending block
+        let popup = this.popup.querySelector('.andpopup-load-overlay'),
+            loaded = document.createElement('div');
+
+        loaded.className = 'andpopup-load-overlay__image';
+        loaded.style.backgroundImage = 'url(https://i.pinimg.com/originals/76/77/ed/7677edd5a44b10130b8824ca020ba60b.gif)';
+        popup.append(loaded);
+
+        return loaded;
+    }
+
+    sendForm(options) {
+        let handler = options.sendForm.handler,
+            formSelector = options.sendForm.formSelector;
+
+        fetch(handler, {
+            method: 'post',
+            body: new FormData(formSelector)
+        }).then(response => {
+
+        }).catch(error => {
+            console.log(`Error to send form: ${error}`);
+        });
+    }
+
+    /* end send form */
 }

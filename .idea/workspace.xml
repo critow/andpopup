@@ -42,7 +42,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -61,8 +61,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.index.html (2)">
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/modal_andmodal/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html (2)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/popup_andpopup/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/andmodal/index.html" useBuiltInWebServerPort="true">
@@ -73,6 +76,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html (2)" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="Node.js.andpopup.js" />
         <item itemvalue="JavaScript Debug.index.html" />
@@ -98,6 +102,10 @@
       <workItem from="1572552850883" duration="2000" />
       <workItem from="1572552868028" duration="108000" />
       <workItem from="1572552987242" duration="95000" />
+      <workItem from="1572553086590" duration="201000" />
+      <workItem from="1572553299471" duration="45000" />
+      <workItem from="1572798232545" duration="5612000" />
+      <workItem from="1573062701622" duration="12174000" />
     </task>
     <servers />
   </component>
