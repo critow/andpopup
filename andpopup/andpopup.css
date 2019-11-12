@@ -89,18 +89,29 @@
     height: 100%;
     background-color: #fff;
     z-index: 1003;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.andpopup-load-overlay__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 200px;
-    height: 200px;
-    margin: auto;
+.andpopup-load-overlay__image, .andpopup-load-overlay__check-image {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.andpopup-load-overlay__image {
+    width: 200px;
+    height: 200px;
+}
+
+.andpopup-load-overlay__check-image {
+    width: 100px;
+    height: 100px;
+}
+
+.andpopup-load-overlay__check-text {
+    font-size: 20px;
+    font-weight: 700;
 }

@@ -27,16 +27,13 @@ class Andpopup {
 
         /* send form for constructor */
 
-        this.pendingFlag = true;
-
         if (options.sendForm != null) {
             let form = document.querySelector(`${options.sendForm.formSelector}`);
 
             form.addEventListener('submit', () => {
-                if (this.pendingFlag === true) {
-                    this.pending();
-                    this.pendingLoad();
-                }
+                this.pending();
+                this.pendingLoad();
+                this.sendForm(options); //transfer this options to sendForm()
             });
         }
 
@@ -46,6 +43,7 @@ class Andpopup {
     hidePopup() {
         this.wrapper.classList.remove('andpopup_show');
         this.overlay.classList.remove('andpopup-overlay_show');
+        this.pendingRemove();
     }
 
     showPopup() {
@@ -96,15 +94,59 @@ class Andpopup {
         return loaded;
     }
 
-    sendForm(options) {
-        let handler = options.sendForm.handler,
-            formSelector = options.sendForm.formSelector;
+    pendingLoadEnd() {
+        let loaded = this.popup.querySelector('.andpopup-load-overlay__image');
+        loaded.remove();
+    }
 
-        fetch(handler, {
-            method: 'post',
+    check() {
+        let popup = this.popup.querySelector('.andpopup-load-overlay'),
+            checkImage = document.createElement('div'),
+            checkArray = [];
+
+        checkImage.className = 'andpopup-load-overlay__check-image';
+        checkImage.style.backgroundImage = 'url(https://thumbs.gfycat.com/ShyCautiousAfricanpiedkingfisher-max-1mb.gif)';
+        popup.append(checkImage);
+
+        let checkText = document.createElement('span');
+
+        checkText.className = 'andpopup-load-overlay__check-text';
+        checkText.innerText = 'Application sent';
+        popup.append(checkText);
+
+        checkArray.push(checkImage, checkText);
+
+        return checkArray;
+    }
+
+    pendingRemove() {
+        let popup = this.popup.querySelector('.andpopup-load-overlay');
+        if (popup) {
+            setTimeout(function () {
+                popup.remove();
+            }, 500);
+        }
+    }
+
+    sendForm(options) { // got options of constructor
+        let formObject = options.sendForm, filePath, formSelector;
+
+        for (let key in formObject) {
+            if (key === 'filePath') {
+                filePath = formObject[key];
+            }
+            if (key === 'formSelector') {
+                formSelector = document.querySelector(`${formObject[key]}`);
+            }
+        }
+
+        fetch(filePath, {
+            method: 'POST',
             body: new FormData(formSelector)
         }).then(response => {
-
+            console.log(response); //TODO: Do not forget to remove
+            this.pendingLoadEnd();
+            this.check();
         }).catch(error => {
             console.log(`Error to send form: ${error}`);
         });
