@@ -95,23 +95,37 @@
     align-items: center;
 }
 
-.andpopup-load-overlay__image, .andpopup-load-overlay__check-image {
+.andpopup-load-overlay__image, .andpopup-load-overlay__success-image {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
+.andpopup-load-overlay__image, .andpopup-load-overlay__success-image, .andpopup-load-overlay__error-image {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .andpopup-load-overlay__image {
     width: 200px;
     height: 200px;
+    background-image: url(https://i.pinimg.com/originals/76/77/ed/7677edd5a44b10130b8824ca020ba60b.gif);
 }
 
-.andpopup-load-overlay__check-image {
+.andpopup-load-overlay__success-image, .andpopup-load-overlay__error-image {
     width: 100px;
     height: 100px;
 }
 
-.andpopup-load-overlay__check-text {
+.andpopup-load-overlay__success-image {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50;' xml:space='preserve'%3E%3Ccircle style='fill:%2325AE88;' cx='25' cy='25' r='25'/%3E%3Cpolyline style='fill:none;stroke:%23FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;' points=' 38,15 22,33 12,25 '/%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A");
+}
+
+.andpopup-load-overlay__error-image {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50;' xml:space='preserve'%3E%3Ccircle style='fill:%23D75A4A;' cx='25' cy='25' r='25'/%3E%3Cpolyline style='fill:none;stroke:%23FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;' points='16,34 25,25 34,16 '/%3E%3Cpolyline style='fill:none;stroke:%23FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;' points='16,16 25,25 34,34 '/%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E");
+}
+
+.andpopup-load-overlay__success-text {
     font-size: 20px;
     font-weight: 700;
 }

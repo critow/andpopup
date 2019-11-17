@@ -32,7 +32,7 @@ class Andpopup {
 
             form.addEventListener('submit', () => {
                 this.pending();
-                this.pendingLoad();
+                this.pendingLoad(options); //transfer this options to pendingLoad()
                 this.sendForm(options); //transfer this options to sendForm()
             });
         }
@@ -44,11 +44,13 @@ class Andpopup {
         this.wrapper.classList.remove('andpopup_show');
         this.overlay.classList.remove('andpopup-overlay_show');
         this.pendingRemove();
+        document.body.style.overflow = null;
     }
 
     showPopup() {
         this.wrapper.classList.add('andpopup_show');
         this.overlay.classList.add('andpopup-overlay_show');
+        document.body.style.overflow = 'hidden';
     }
 
     create(tag, tagClass) { //created element before popup window
@@ -79,19 +81,25 @@ class Andpopup {
         let overlay = document.createElement('div');
         overlay.className = 'andpopup-load-overlay';
         this.popup.append(overlay);
-
-        return overlay;
     }
 
-    pendingLoad() {   //created block with image for pending block
+    pendingLoad(options) {   //created block with image for pending block
         let popup = this.popup.querySelector('.andpopup-load-overlay'),
             loaded = document.createElement('div');
 
         loaded.className = 'andpopup-load-overlay__image';
-        loaded.style.backgroundImage = 'url(https://i.pinimg.com/originals/76/77/ed/7677edd5a44b10130b8824ca020ba60b.gif)';
         popup.append(loaded);
 
-        return loaded;
+        if (options) {
+            let formObject = options.sendForm;
+
+            for (let key in formObject) {
+                if (key === 'loadImage') {
+                    loaded.style.backgroundImage = formObject[key];
+                }
+            }
+        }
+
     }
 
     pendingLoadEnd() {
@@ -99,24 +107,62 @@ class Andpopup {
         loaded.remove();
     }
 
-    check() {
+    success(options) { // get options of sendForm()/fetch
         let popup = this.popup.querySelector('.andpopup-load-overlay'),
-            checkImage = document.createElement('div'),
-            checkArray = [];
+            successImage = document.createElement('div');
 
-        checkImage.className = 'andpopup-load-overlay__check-image';
-        checkImage.style.backgroundImage = 'url(https://thumbs.gfycat.com/ShyCautiousAfricanpiedkingfisher-max-1mb.gif)';
-        popup.append(checkImage);
+        successImage.className = 'andpopup-load-overlay__success-image';
+        popup.append(successImage);
 
-        let checkText = document.createElement('span');
+        let successText = document.createElement('span');
 
-        checkText.className = 'andpopup-load-overlay__check-text';
-        checkText.innerText = 'Application sent';
-        popup.append(checkText);
+        successText.className = 'andpopup-load-overlay__success-text';
+        successText.innerText = 'Application sent';
+        popup.append(successText);
 
-        checkArray.push(checkImage, checkText);
+        if (options) {
+            let formObject = options.sendForm;
 
-        return checkArray;
+            for (let key in formObject) {
+                if (key === 'successImage') {
+                    successImage.style.backgroundImage = formObject[key];
+                }
+
+                if (key === 'successText') {
+                    successText.innerText = formObject[key];
+                }
+            }
+        }
+
+    }
+
+    error(options) { // get options of sendForm()/fetch
+        let popup = this.popup.querySelector('.andpopup-load-overlay'),
+            errorImage = document.createElement('div');
+
+        errorImage.className = 'andpopup-load-overlay__error-image';
+        popup.append(errorImage);
+
+        let errorText = document.createElement('span');
+
+        errorText.className = 'andpopup-load-overlay__error-text';
+        errorText.innerText = 'Error, try again';
+        popup.append(errorText);
+
+        if (options) {
+            let formObject = options.sendForm;
+
+            for (let key in formObject) {
+                if (key === 'errorImage') {
+                    errorImage.style.backgroundImage = formObject[key];
+                }
+
+                if (key === 'errorText') {
+                    errorText.innerText = formObject[key];
+                }
+            }
+        }
+
     }
 
     pendingRemove() {
@@ -128,7 +174,7 @@ class Andpopup {
         }
     }
 
-    sendForm(options) { // got options of constructor
+    sendForm(options) { // get options of constructor
         let formObject = options.sendForm, filePath, formSelector;
 
         for (let key in formObject) {
@@ -143,12 +189,13 @@ class Andpopup {
         fetch(filePath, {
             method: 'POST',
             body: new FormData(formSelector)
-        }).then(response => {
-            console.log(response); //TODO: Do not forget to remove
+        }).then(() => {
             this.pendingLoadEnd();
-            this.check();
+            this.success(options); //transfer constructor -> this -> success()
         }).catch(error => {
             console.log(`Error to send form: ${error}`);
+            this.pendingLoadEnd();
+            this.error(options); //transfer constructor -> this -> error()
         });
     }
 
