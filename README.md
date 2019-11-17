@@ -4,4 +4,6 @@
 
 ##install
 
+```
 npm i andpopup
+```
