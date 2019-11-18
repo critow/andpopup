@@ -2,6 +2,9 @@
 
 > easy popup? andpopup with sent form!
 
+### demo
+https://critow.github.io/index.html
+
 ### install
 
 ```
