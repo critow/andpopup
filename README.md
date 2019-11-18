@@ -2,13 +2,13 @@
 
 > easy popup? andpopup with sent form!
 
-#### install
+### install
 
 ```
 $ npm i andpopup
 ```
 
-#### Example using
+### Example using
 
 Add a link to the css file in your `<head>`:
 ```html
@@ -69,7 +69,7 @@ let modal = new Andpopup('.open-popup', {
     });
 ```
 
-#### Options
+### Options
 
 All options
 
