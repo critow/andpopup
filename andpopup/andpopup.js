@@ -30,6 +30,8 @@ class Andpopup {
         if (options.sendForm != null) {
             let form = document.querySelector(`${options.sendForm.formSelector}`);
 
+            this.action(options); //transfer this options to action()
+
             form.addEventListener('submit', () => {
                 this.pending();
                 this.pendingLoad(options); //transfer this options to pendingLoad()
@@ -171,6 +173,19 @@ class Andpopup {
             setTimeout(function () {
                 popup.remove();
             }, 500);
+        }
+    }
+
+    action(options) { //get options of constructor
+        let formObject = options.sendForm, formSelector;
+
+        for (let key in formObject) {
+            if (key === 'formSelector') {
+                formSelector = document.querySelector(`${formObject[key]}`);
+                if (formSelector.getAttribute('action') === null) {
+                    formSelector.setAttribute('action', 'javascript:void(0);')
+                }
+            }
         }
     }
 
