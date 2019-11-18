@@ -2,10 +2,10 @@
 
 > easy popup? andpopup with sent form!
 
-### demo
+### Demo
 https://critow.github.io/index.html
 
-### install
+### Install
 
 ```
 $ npm i andpopup
