@@ -24,7 +24,7 @@ Then, before your closing `<body>` tag add:
 
 Easy popup connection:
 
-```JavaScript
+```javascript
 let modal = new Andpopup('.open-popup', { //Clicking on an item opens your popup
         popupSelector: '.popup' //Your popup
     });
