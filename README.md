@@ -2,10 +2,10 @@
 
 > easy popup? andpopup with sent form!
 
-### package managers
+#### package managers
 
 ```
-npm i andpopup
+$ npm i andpopup
 ```
 
 ## connection
