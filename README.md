@@ -2,18 +2,30 @@
 
 > easy popup? andpopup with sent form!
 
-#### package managers
+#### install
 
 ```
 $ npm i andpopup
 ```
 
-## connection
+#### Example using
 
-Easy popup connection
+Add a link to the css file in your `<head>`:
 
 ```
-let modal = new Andpopup('.open-popup', {
+<link rel="stylesheet" href="your-project-name/andpopup/andpopup.min.css">
+```
+
+Then, before your closing `<body>` tag add:
+
+```
+<script src="your-project-name/andpopup/andpopup.min.js"></script>
+```
+
+Easy popup connection:
+
+```
+let modal = new Andpopup('.open-popup', { *//Clicking on an item opens popup*
         popupSelector: '.popup'
     });
 ```
